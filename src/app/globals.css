@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ============================================================
+   EmpOps — Design System · Dark Only
+   Style: Deep Royal Blue Dashboard
+   ============================================================ */
+
+@theme inline {
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  /* Radius */
+  --radius-lg: 0.625rem;
+}
+
+/* ─────────────────────────────────────────
+   GLOBAL DARK THEME (The base for everything)
+───────────────────────────────────────── */
+:root {
+  --background: #0b0e16;
+  --foreground: #ffffff;
+  --sidebar: #0f172a;
+  --sidebar-foreground: #cbd5e1;
+  --sidebar-primary: rgba(45, 88, 157, 0.571);
+  --sidebar-border: #334155;
+
+  /* ── Semantic & Borders ── */
+  --border: oklch(100% 0 0 / 8%);
+  --ring: oklch(50% 0.17 260);
+  --success: oklch(65% 0.18 142);
+  --danger: oklch(65% 0.22 27);
+  --warning: oklch(72% 0.17 60);
+  --muted: oklch(20% 0.01 240);
+  --muted-foreground: oklch(55% 0.008 240);
+}
+
+/* ─────────────────────────────────────────
+   BASE STYLES
+───────────────────────────────────────── */
+@layer base {
+  * { 
+    @apply border-border outline-ring/50; 
+  }
+  body { 
+    @apply bg-background text-foreground antialiased; 
+  }
+}
