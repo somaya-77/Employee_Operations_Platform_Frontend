@@ -2,6 +2,12 @@ import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+
+const publicRoutes = [
+  "/auth/login",
+];
+
+
 export async function middleware(request: NextRequest) {
   console.log("MIDDLEWARE RUNNING");
   const token = await getToken({
@@ -14,10 +20,16 @@ export async function middleware(request: NextRequest) {
   const userRole = token?.role;
 
   // 1. login
-  if (!token && pathname !== '/auth/login') {
-     console.log("REDIRECTING TO LOGIN");
-    return NextResponse.redirect(new URL('/auth/login', request.url));
-  }
+if (
+  !token &&
+  !publicRoutes.some(route =>
+    pathname.startsWith(route)
+  )
+) {
+  return NextResponse.redirect(
+    new URL("/auth/login", request.url)
+  );
+}
 
   // 2. dashboard
   if (token && pathname === '/auth/login') {
@@ -26,10 +38,10 @@ export async function middleware(request: NextRequest) {
   }
 
   // 3. super_admin
-  if (pathname.startsWith('/companies') && userRole !== 'super_admin') {
-    console.log("REDIRECTING TO DASHBOARD");
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
+  // if (pathname.startsWith('/companies') && userRole !== 'super_admin') {
+  //   console.log("REDIRECTING TO DASHBOARD");
+  //   return NextResponse.redirect(new URL('/dashboard', request.url));
+  // }
 
   return NextResponse.next();
 }
