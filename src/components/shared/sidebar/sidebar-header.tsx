@@ -2,7 +2,7 @@
 
 // Imports
 import { cn } from "@/lib/utils";
-import Logo from "@/components/logo";
+import Logo from "@/components/shared/logo";
 import { ChevronLeft } from "lucide-react";
 import { useSidebar } from "@/app/(dashboard)/providers/sidebar-provider";
 

@@ -5,7 +5,7 @@ import HeaderCompanies from "../../../features/companies/components/header-compa
 export default function CompaniesPage() {
     return (
         <div>
-           <HeaderCompanies />
+            <HeaderCompanies />
         </div>
     )
 }

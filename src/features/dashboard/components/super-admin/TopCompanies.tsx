@@ -1,11 +1,11 @@
 "use client"
-// components/superadmin/TopCompanies.tsx
+
 import { CheckCircle2, XCircle, Clock } from "lucide-react"
 
 interface Company {
-  id:         string
-  name:       string
-  status:     string
+  id: string
+  name: string
+  status: string
   user_count: number
   created_at: string
 }
@@ -13,28 +13,29 @@ interface Company {
 interface Props { companies: Company[] }
 
 const STATUS = {
-  active:    { label: "نشطة",   icon: CheckCircle2, cls: "text-emerald-500" },
-  suspended: { label: "موقوفة", icon: XCircle,      cls: "text-rose-500"    },
-  trial:     { label: "تجريبي", icon: Clock,        cls: "text-amber-500"   },
+  active: { label: "Active", icon: CheckCircle2, cls: "text-emerald-500" },
+  suspended: { label: "Suspended", icon: XCircle, cls: "text-rose-500" },
+  trial: { label: "Trial", icon: Clock, cls: "text-amber-500" },
 }
 
 export default function TopCompanies({ companies }: Props) {
+
   return (
     <div className="overflow-hidden">
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-border">
-            <th className="text-right text-xs font-medium text-muted-foreground pb-3">الشركة</th>
-            <th className="text-right text-xs font-medium text-muted-foreground pb-3">المستخدمون</th>
-            <th className="text-right text-xs font-medium text-muted-foreground pb-3">الحالة</th>
-            <th className="text-right text-xs font-medium text-muted-foreground pb-3">تاريخ الإنشاء</th>
+            <th className="text-left text-xs font-medium text-muted-foreground pb-3">Company</th>
+            <th className="text-left text-xs font-medium text-muted-foreground pb-3">Users</th>
+            <th className="text-left text-xs font-medium text-muted-foreground pb-3">Status</th>
+            <th className="text-left text-xs font-medium text-muted-foreground pb-3">Created At</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-border">
           {companies.map((c) => {
-            const st   = STATUS[c.status as keyof typeof STATUS] ?? STATUS.active
+            const st = STATUS[c.status as keyof typeof STATUS] ?? STATUS.active
             const Icon = st.icon
-            const date = new Date(c.created_at).toLocaleDateString("ar-EG", {
+            const date = new Date(c.created_at).toLocaleDateString("en-US", {
               day: "numeric", month: "short", year: "numeric",
             })
             return (
