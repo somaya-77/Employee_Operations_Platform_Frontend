@@ -1,5 +1,4 @@
 "use client"
-// components/superadmin/StatsGrid.tsx
 import { Building2, Users, ShieldAlert, TrendingUp } from "lucide-react"
 
 interface Stats {

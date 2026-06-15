@@ -70,7 +70,7 @@ export default async function SuperAdminDashboard() {
                             </span>
                         )}
                     </div>
-                    <SystemAlerts alerts={alertsData.alerts} />
+                    <SystemAlerts alerts={alertsData} />
                 </div>
             </div>
 
