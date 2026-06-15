@@ -12,7 +12,8 @@ export async function middleware(request: NextRequest) {
   console.log("MIDDLEWARE RUNNING");
   const token = await getToken({
     req: request,
-    secret: process.env.NEXTAUTH_SECRET
+    secret: process.env.NEXTAUTH_SECRET,
+    secureCookie: true,
   });
   console.log("tokentokentokentoken", token)
 
@@ -20,16 +21,16 @@ export async function middleware(request: NextRequest) {
   const userRole = token?.role;
 
   // 1. login
-if (
-  !token &&
-  !publicRoutes.some(route =>
-    pathname.startsWith(route)
-  )
-) {
-  return NextResponse.redirect(
-    new URL("/auth/login", request.url)
-  );
-}
+  if (
+    !token &&
+    !publicRoutes.some(route =>
+      pathname.startsWith(route)
+    )
+  ) {
+    return NextResponse.redirect(
+      new URL("/auth/login", request.url)
+    );
+  }
 
   // 2. dashboard
   if (token && pathname === '/auth/login') {
