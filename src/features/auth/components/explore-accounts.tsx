@@ -1,22 +1,41 @@
 "use client";
 
 // Imports
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { accountsBtn } from "@/lib/constance/forms";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function ExploreAccounts() {
+    // Router
+    const router = useRouter()
     // Transition state for handling login
     const [isPending, startTransition] = useTransition();
 
-    const handleLogin = (email: string, password: string) => {
+    // State 
+    const [loadingIndex, setLoadingIndex] = useState<number | null>(null);
+    // Handle login for the selected account
+    const handleLogin = (email: string, password: string, index: number) => {
+        setLoadingIndex(index);
+
         startTransition(async () => {
-            await signIn("credentials", {
+            const result = await signIn("credentials", {
                 email,
                 password,
-                callbackUrl: "/dashboard",
+                redirect: false,
             });
+
+            if (result?.error) {
+                toast.error("Invalid email or password");
+                setLoadingIndex(null);
+                return;
+            }
+
+            toast.success("Sign in successful");
+            router.push("/dashboard");
+            router.refresh();
         });
     };
 
@@ -28,8 +47,8 @@ export default function ExploreAccounts() {
                     <Button
                         key={index}
                         variant="outline"
-                        isLoading={isPending}
-                        onClick={() => handleLogin(acc.email, acc.password)}
+                        isLoading={isPending && loadingIndex === index}
+                        onClick={() => handleLogin(acc.email, acc.password, index)}
                     >
                         {acc.label}
                     </Button>
