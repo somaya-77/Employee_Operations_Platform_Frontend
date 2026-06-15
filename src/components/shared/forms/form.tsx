@@ -41,7 +41,7 @@ export default function Form<T extends FieldValues>({ title, data, titleBtn, han
         <>
             <form onSubmit={handleSubmit} >
                 <div className="flex flex-col gap-6 justify-center items-center w-full ">
-                    <div className="flex gap-6 w-full">
+                    {/* <div className="flex gap-6 w-full">
                         {data
                             .filter(item => item.name === "firstName" || item.name === "lastName")
                             .map(item => (
@@ -53,7 +53,7 @@ export default function Form<T extends FieldValues>({ title, data, titleBtn, han
                                         name={item.name as Path<T>} />
                                 </div>
                             ))}
-                    </div>
+                    </div> */}
 
                     {data
                         .filter(item => item.name !== "firstName" && item.name !== "lastName")
@@ -72,11 +72,6 @@ export default function Form<T extends FieldValues>({ title, data, titleBtn, han
                                 }
                             </div>
                         ))}
-
-
-                    {/* <div className="w-full flex justify-end ">
-                    <Link className="text-blue-600 font-medium -mt-2 mb-4" href={path}>{titleLinkPage}</Link>
-                </div> */}
                 </div>
 
                 {/* {title === "Verify OTP" && (
@@ -84,9 +79,9 @@ export default function Form<T extends FieldValues>({ title, data, titleBtn, han
                 )} */}
 
                 <Button
-                    type="submit" className="w-full mt-6 cursor-pointer" disabled={form.formState.isSubmitting}>{titleBtn}</Button>
+                isLoading={form.formState.isSubmitting}
+                    type="submit" className="w-full mt-6">{titleBtn}</Button>
             </form>
-            {/* <FormFooter title={title} /> */}
         </>
     )
 }

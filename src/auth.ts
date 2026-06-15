@@ -4,8 +4,8 @@ import { JSON_HEADER } from "./lib/constance";
 
 export const authOptions: NextAuthOptions = {
     pages: {
-        signIn: "/login",
-        error: "/login",
+        signIn: "/auth/login",
+        error: "/auth/login",
     },
     providers: [
         Credentials({
@@ -43,21 +43,27 @@ export const authOptions: NextAuthOptions = {
 
     session: {
         strategy: "jwt",
-        maxAge: 30 * 24 * 60 * 60,
+        maxAge:  30 * 24 * 60 * 60,
     },
 
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
+                const userData = (user as any).user;
+
                 token.accessToken = (user as any).token;
-                token.user = (user as any).user;
-                token.role = (user as any).role;
+                token.user = userData;
+                token.role = userData.role;
             }
             return token;
         },
         async session({ session, token }) {
-            session.user = token.user as any;
-            session.user.role = token.role as any;
+            if (session.user) {
+                session.accessToken = token.accessToken as string;
+                session.user = token.user as any;
+                session.user.role = token.role as string;
+                
+            }
             return session;
         },
     },

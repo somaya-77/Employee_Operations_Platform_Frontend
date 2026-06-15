@@ -4,7 +4,7 @@
 import { cn } from "@/lib/utils";
 import Logo from "@/components/logo";
 import { ChevronLeft } from "lucide-react";
-import { useSidebar } from "@/app/dashboard/providers/sidebar-provider";
+import { useSidebar } from "@/app/(dashboard)/providers/sidebar-provider";
 
 
 export default function SidebarHeader() {

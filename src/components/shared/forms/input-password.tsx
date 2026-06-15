@@ -43,7 +43,7 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
           type={showPassword ? "text" : "password"}
           disabled={status === "disabled"}
           className={cn(
-            "flex h-11 w-full rounded-xl border bg-white px-4 pr-10 text-sm font-sarabun placeholder:text-zinc-400 focus:outline-none",
+            "flex h-11 w-full rounded-xl border bg-white px-4 pr-10 text-sm placeholder:text-zinc-400 focus:outline-none",
             statusStyles[status],
             className
           )}

@@ -1,22 +1,12 @@
-'use client';
-
-// Imports
-import { Role, ROLES } from "@/types";
-import SidebarLinks from "./sidebar-links";
-import SidebarHeader from "./sidebar-header";
-import SidebarFooter from "./sidebar-footer";
-import { useSidebar } from "@/app/dashboard/providers/sidebar-provider";
+import { getServerSession } from "next-auth";
+import SidebarContent from "./sidebar-content";
+import { authOptions } from "@/auth";
 
 
-export default function Sidebar({ userRole = ROLES.SUPER_ADMIN }: { userRole?: Role }) {
-    // context
-    const { isCollapsed } = useSidebar();
 
-    return (
-        <aside className={`bg-sidebar border-r border-sidebar-border h-screen p-4 transition-all duration-300 sticky ${isCollapsed ? "w-20" : "w-72"}`}>
-            <SidebarHeader />
-            <SidebarLinks userRole={userRole} />
-            <SidebarFooter userRole={userRole} />
-        </aside>
-    );
+export default async function Sidebar() {
+    const session = await getServerSession(authOptions);
+
+
+    return (<SidebarContent role={session?.user.role} />);
 };

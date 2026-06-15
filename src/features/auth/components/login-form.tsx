@@ -1,7 +1,7 @@
 "use client";
 
 import { useLoginHook } from "./use-login-hook";
-import { LoginSchemaType } from "./login.schema";
+import { LoginSchemaType } from "../schemas/login.schema";
 import Form from "@/components/shared/forms/form";
 import { loginInputs } from "@/lib/constance/forms";
 

@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { defaultValue, LoginSchema, LoginSchemaType } from "./login.schema";
+import { defaultValue, LoginSchema, LoginSchemaType } from "../schemas/login.schema";
 
 
 export function useLoginHook() {

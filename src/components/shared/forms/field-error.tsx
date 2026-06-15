@@ -1,8 +1,8 @@
 import { FieldValues, Path, UseFormReturn } from "react-hook-form";
 
 export type FieldErrorProps<T extends FieldValues> = {
-    form: UseFormReturn<T>;
-    name: Path<T>;
+  form: UseFormReturn<T>;
+  name: Path<T>;
 };
 
 export default function FieldError<T extends FieldValues>({ form, name }: FieldErrorProps<T>) {

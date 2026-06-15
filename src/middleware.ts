@@ -3,36 +3,31 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
 
   const token = await getToken({ 
     req: request, 
-    secret: process.env.NEXTAUTH_SECRET 
+    secret: process.env.NEXTAUTH_SECRET,
+    secureCookie: process.env.NODE_ENV === 'production',
   });
 
-  // const token = request.cookies.get('token')?.value; 
-  // const userRole = request.cookies.get('role')?.value;
-  const { pathname } = request.nextUrl;
-const userRole = token?.role;
 
-  // 1. login
+
   if (!token && pathname !== '/auth/login') {
     return NextResponse.redirect(new URL('/auth/login', request.url));
   }
 
-  // 2. dashboard
   if (token && pathname === '/auth/login') {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
-  // 3. super_admin
-  if (pathname.startsWith('/companies') && userRole !== 'super_admin') {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
+  if (token && pathname === '/') {
+  return NextResponse.redirect(new URL('/dashboard', request.url));
+}
 
   return NextResponse.next();
 }
 
-// middleware
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)'],
 };
