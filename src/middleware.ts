@@ -15,16 +15,19 @@ export async function middleware(request: NextRequest) {
 
   // 1. login
   if (!token && pathname !== '/auth/login') {
+     console.log("REDIRECTING TO LOGIN");
     return NextResponse.redirect(new URL('/auth/login', request.url));
   }
 
   // 2. dashboard
   if (token && pathname === '/auth/login') {
+    console.log("REDIRECTING TO DASHBOARD");
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   // 3. super_admin
   if (pathname.startsWith('/companies') && userRole !== 'super_admin') {
+    console.log("REDIRECTING TO DASHBOARD");
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
