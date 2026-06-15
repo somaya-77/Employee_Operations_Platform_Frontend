@@ -34,7 +34,8 @@ export default function ExploreAccounts() {
             }
 
             toast.success("Sign in successful");
-            window.location.replace("/dashboard");
+            router.push("/dashboard");
+            router.refresh();
         });
     };
 
