@@ -10,11 +10,14 @@ const publicRoutes = [
 
 export async function middleware(request: NextRequest) {
   console.log("MIDDLEWARE RUNNING");
+ console.log("COOKIES:", request.cookies.getAll());
+  
   const token = await getToken({
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
-    secureCookie: true,
+    secureCookie: process.env.NEXTAUTH_URL?.startsWith("https") ?? false,
   });
+  console.log("TOKEN:", token);
   console.log("tokentokentokentoken", token)
 
   const { pathname } = request.nextUrl;
