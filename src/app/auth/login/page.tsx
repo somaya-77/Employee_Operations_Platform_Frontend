@@ -3,7 +3,7 @@ import ExploreAccounts from '../../../features/auth/components/explore-accounts'
 
 export default function LoginPage() {
     return (
-        <div className="flex flex-col lg:flex-row items-center justify-center w-full min-h-screen ">
+        <div className="flex flex-col lg:flex-row items-center justify-center w-full min-h-screen py-8">
             {/* Explore accounts */}
             <ExploreAccounts />
 
