@@ -15,7 +15,8 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
-    secureCookie: process.env.NEXTAUTH_URL?.startsWith("https") ?? false,
+    secureCookie: true,
+    // secureCookie: process.env.NEXTAUTH_URL?.startsWith("https") ?? false,
   });
   console.log("TOKEN:", token);
   console.log("tokentokentokentoken", token)
