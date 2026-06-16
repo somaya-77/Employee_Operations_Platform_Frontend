@@ -9,17 +9,17 @@ const publicRoutes = [
 
 
 export async function middleware(request: NextRequest) {
-  console.log("MIDDLEWARE RUNNING");
- console.log("COOKIES:", request.cookies.getAll());
+  // console.log("MIDDLEWARE RUNNING");
+//  console.log("COOKIES:", request.cookies.getAll());
   
   const token = await getToken({
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
-    secureCookie: true,
+    // secureCookie: true,
     // secureCookie: process.env.NEXTAUTH_URL?.startsWith("https") ?? false,
   });
   console.log("TOKEN:", token);
-  console.log("tokentokentokentoken", token)
+  // console.log("tokentokentokentoken", token)
 
   const { pathname } = request.nextUrl;
   const userRole = token?.role;
@@ -37,10 +37,11 @@ export async function middleware(request: NextRequest) {
   }
 
   // 2. dashboard
-  if (token && pathname === '/auth/login') {
-    console.log("REDIRECTING TO DASHBOARD");
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
+if (token && pathname === "/auth/login") {
+  return NextResponse.redirect(
+    new URL("/dashboard", request.url)
+  );
+}
 
   // 3. super_admin
   // if (pathname.startsWith('/companies') && userRole !== 'super_admin') {
