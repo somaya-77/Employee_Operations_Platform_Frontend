@@ -6,12 +6,12 @@ import DashboardProvider from "./providers";
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
 
     return (
-        <main className="flex-1 h-screen flex">
+        <main className="overflow-hidden h-screen flex">
             <DashboardProvider>
                 <Sidebar />
                 <div className="flex flex-col flex-1">
                     <Header />
-                    <div className="p-12 h-full">
+                    <div className="p-12 h-full overflow-y-auto">
                         {children}
                     </div>
 
