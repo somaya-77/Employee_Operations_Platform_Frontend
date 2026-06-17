@@ -2,7 +2,7 @@ import axios from "axios";
 import { authOptions } from "@/auth";
 import { JSON_HEADER } from "./constance";
 import { getServerSession } from "next-auth";
-import { signOut } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 
 const axiosInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -20,8 +20,8 @@ axiosInstance.interceptors.response.use(
 );
 
 axiosInstance.interceptors.request.use(async (config) => {
-    const session = await getServerSession(authOptions);
-    console.log("sessionsessionsessionsessionsessionsessionsession", session?.accessToken)
+    const session = await getSession();
+
     if (session?.accessToken) {
         config.headers.Authorization = `Bearer ${session?.accessToken}`;
     }
