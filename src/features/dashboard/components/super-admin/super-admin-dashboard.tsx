@@ -2,7 +2,6 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/auth"
 import { redirect } from "next/navigation"
 import { ROLES } from "@/types"
-
 import { ArrowRight, Building2, Plus } from "lucide-react"
 import Link from "next/link"
 import StatsGrid from "./StatsGrid"
@@ -48,10 +47,9 @@ export default async function SuperAdminDashboard() {
                     <div className="flex items-center justify-between mb-5">
                         <h2 className="font-medium">Last Activity </h2>
                         <Button>
-
                             <Link
                                 href="/activities"
-                                className="text-sm text-muted-foreground hover:text-primary transition flex gap-2 items-center"
+                                className="text-sm flex gap-2 items-center"
                             >
                                 Show all <ArrowRight size={16} />
                             </Link>
@@ -82,10 +80,9 @@ export default async function SuperAdminDashboard() {
                         <h2 className="font-medium">Top Companies</h2>
                     </div>
                     <Button>
-
                         <Link
                             href="/companies"
-                            className="text-sm text-muted-foreground hover:text-primary transition flex items-center gap-2"
+                            className="text-sm flex items-center gap-2"
                         >
                             Management company <ArrowRight size={16} />
                         </Link>

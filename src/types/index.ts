@@ -34,9 +34,10 @@ export type TypeForm = {
     placeholder: string;
 }
 
-// export interface User {
-//     id: number;
-//     name: string;
-//     email: string;
-//     role: Role;
-// }
+export interface User {
+    id: number;
+    
+    name: string;
+    email: string;
+    role: Role;
+}

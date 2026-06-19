@@ -1,5 +1,6 @@
 "use client"
 
+import DataTable, { ColumnDef } from "@/components/shared/data-table"
 import { CheckCircle2, XCircle, Clock } from "lucide-react"
 
 interface Company {
@@ -10,50 +11,50 @@ interface Company {
   created_at: string
 }
 
-interface Props { companies: Company[] }
-
 const STATUS = {
   active: { label: "Active", icon: CheckCircle2, cls: "text-emerald-500" },
   suspended: { label: "Suspended", icon: XCircle, cls: "text-rose-500" },
   trial: { label: "Trial", icon: Clock, cls: "text-amber-500" },
 }
 
-export default function TopCompanies({ companies }: Props) {
+const columns: ColumnDef<Company>[] = [
+  {
+    header: "Company",
+    accessorKey: "name",
+    cell: (row) => <span className="font-medium">{row.name}</span>,
+  },
+  {
+    header: "Users",
+    accessorKey: "user_count",
+    cell: (row) => <span className="text-muted-foreground">{row.user_count.toLocaleString()}</span>,
+  },
+  {
+    header: "Status",
+    accessorKey: "status",
+    cell: (row) => {
+      const st = STATUS[row.status as keyof typeof STATUS] ?? STATUS.active
+      const Icon = st.icon
+      return (
+        <span className={`flex items-center gap-1.5 w-fit ${st.cls}`}>
+          <Icon className="w-3.5 h-3.5" />
+          <span className="text-xs">{st.label}</span>
+        </span>
+      )
+    },
+  },
+  {
+    header: "Created At",
+    accessorKey: "created_at",
+    cell: (row) => (
+      <span className="text-xs text-muted-foreground">
+        {new Date(row.created_at).toLocaleDateString("en-US", {
+          day: "numeric", month: "short", year: "numeric",
+        })}
+      </span>
+    ),
+  },
+]
 
-  return (
-    <div className="overflow-hidden">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-border">
-            <th className="text-left text-xs font-medium text-muted-foreground pb-3">Company</th>
-            <th className="text-left text-xs font-medium text-muted-foreground pb-3">Users</th>
-            <th className="text-left text-xs font-medium text-muted-foreground pb-3">Status</th>
-            <th className="text-left text-xs font-medium text-muted-foreground pb-3">Created At</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-border">
-          {companies.map((c) => {
-            const st = STATUS[c.status as keyof typeof STATUS] ?? STATUS.active
-            const Icon = st.icon
-            const date = new Date(c.created_at).toLocaleDateString("en-US", {
-              day: "numeric", month: "short", year: "numeric",
-            })
-            return (
-              <tr key={c.id} className="hover:bg-muted/30 transition-colors">
-                <td className="py-3 font-medium">{c.name}</td>
-                <td className="py-3 text-muted-foreground">{c.user_count.toLocaleString()}</td>
-                <td className="py-3">
-                  <span className={`flex items-center gap-1.5 w-fit ${st.cls}`}>
-                    <Icon className="w-3.5 h-3.5" />
-                    <span className="text-xs">{st.label}</span>
-                  </span>
-                </td>
-                <td className="py-3 text-xs text-muted-foreground">{date}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-    </div>
-  )
+export default function TopCompanies({ companies }: { companies: Company[] }) {
+  return <DataTable data={companies} columns={columns} emptyMessage="No companies yet" />
 }

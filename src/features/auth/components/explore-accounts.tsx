@@ -42,9 +42,10 @@ export default function ExploreAccounts() {
     return (
         <div className="flex flex-col items-center justify-center w-full p-8 ">
             <h2 className="text-xl font-bold mb-6 text-center">Explore using accounts</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 w-full max-w-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 w-full max-w-sm">
                 {accountsBtn.map((acc, index) => (
                     <Button
+                    className="min-w-50"
                         key={index}
                         variant="outline"
                         isLoading={isPending && loadingIndex === index}

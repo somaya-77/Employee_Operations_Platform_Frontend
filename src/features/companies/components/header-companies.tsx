@@ -1,17 +1,38 @@
-// "use client";
+"use client";
 
-import { authOptions } from "@/auth";
 import { Button } from "@/components/ui/button";
-import { PlusCircleIcon } from "lucide-react";
-import { getServerSession } from "next-auth";
-import { getSession } from "next-auth/react";
+import { Input } from "@/components/ui/input";
+import { PlusCircleIcon, Search } from "lucide-react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
-export default async function HeaderCompanies() {
-    const session = await getServerSession(authOptions);
+export default function HeaderCompanies() {
+    const searchParams = useSearchParams();
+  const { replace } = useRouter();
 
+const handleSearch = useDebouncedCallback((term: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (term) {
+      params.set("query", term); 
+    } else {
+      params.delete("query");
+    }
+    replace(`/companies?${params.toString()}`);
+  }, 500);
     return (
-        <div>
+        <div className="flex items-center justify-between">
+            {/* Input search */}
+            <div className="relative w-64">
+        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Input
+          placeholder="Search companies..."
+          className="pl-9"
+          onChange={(e) => handleSearch(e.target.value)}
+          defaultValue={searchParams.get("query")?.toString()}
+        />
+      </div>
+
             <Button>
                 <Link
                     href="/companies/create-company"

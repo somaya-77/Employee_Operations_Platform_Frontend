@@ -23,7 +23,7 @@ export default function SidebarLinks({role}:{ role: string | undefined }) {
     })).filter((section) => section.items.length > 0);
 
     return (
-        <nav className="overflow-y-auto h-[80%]">
+        <nav className="overflow-y-auto h-[86%]">
             {filteredSidebar.map((section) => (
                 <div key={section.section} className="mb-6 border-b ">
                     {/* Section Name */}

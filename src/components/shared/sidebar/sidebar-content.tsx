@@ -6,6 +6,7 @@ import SidebarLinks from "./sidebar-links";
 import SidebarHeader from "./sidebar-header";
 import SidebarFooter from "./sidebar-footer";
 import { useSidebar } from "@/app/(dashboard)/providers/sidebar-provider";
+import { User } from "next-auth";
 
 
 export default function SidebarContent({ role }: { role: string | undefined }) {
