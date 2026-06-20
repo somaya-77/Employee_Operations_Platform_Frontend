@@ -1,22 +1,11 @@
-"use client"
+"use client";
 
-import DataTable, { ColumnDef } from "@/components/shared/data-table"
-import { CheckCircle2, XCircle, Clock } from "lucide-react"
+// Imports
+import { Company } from "@/types/dashboard.types";
+import { STATUS } from "@/lib/constance/dashboard";
+import DataTable, { ColumnDef } from "@/components/shared/data-table";
 
-interface Company {
-  id: string
-  name: string
-  status: string
-  user_count: number
-  created_at: string
-}
-
-const STATUS = {
-  active: { label: "Active", icon: CheckCircle2, cls: "text-emerald-500" },
-  suspended: { label: "Suspended", icon: XCircle, cls: "text-rose-500" },
-  trial: { label: "Trial", icon: Clock, cls: "text-amber-500" },
-}
-
+// columns company
 const columns: ColumnDef<Company>[] = [
   {
     header: "Company",

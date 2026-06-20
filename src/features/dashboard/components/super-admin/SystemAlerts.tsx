@@ -1,45 +1,16 @@
 "use client"
-import { AlertTriangle, Info, XCircle } from "lucide-react"
 
-interface Alert {
-  id:      string
-  type:    "warning" | "error" | "info"
-  title:   string
-  message: string
-  date:    string
-}
+// Imports
+import { Info } from "lucide-react";
+import { Alert } from "@/types/dashboard.types";
+import { configAlerts } from "@/lib/constance/dashboard";
 
+// Interface
 interface Props { alerts: Alert[] }
 
-const CONFIG = {
-  error: {
-    icon: XCircle,
-    bg:   "bg-rose-500/8",
-    border: "border-rose-500/20",
-    iconColor: "text-rose-500",
-    badge: "bg-rose-500/10 text-rose-600 dark:text-rose-400",
-    label: "Wrong",
-  },
-  warning: {
-    icon: AlertTriangle,
-    bg:   "bg-amber-500/8",
-    border: "border-amber-500/20",
-    iconColor: "text-amber-500",
-    badge: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
-    label: "Warning",
-  },
-  info: {
-    icon: Info,
-    bg:   "bg-blue-500/8",
-    border: "border-blue-500/20",
-    iconColor: "text-blue-500",
-    badge: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
-    label: "information",
-  },
-}
 
 export default function SystemAlerts({ alerts }: Props) {
-console.log("alerts",)
+  // Empty alerts
   if (!alerts.length) {
     return (
       <div className="flex flex-col items-center justify-center h-32 gap-2 text-muted-foreground">
@@ -52,7 +23,7 @@ console.log("alerts",)
   return (
     <div className="flex flex-col gap-2.5">
       {alerts.map((a) => {
-        const cfg  = CONFIG[a.type]
+        const cfg  = configAlerts[a.type]
         const Icon = cfg.icon
         return (
           <div
