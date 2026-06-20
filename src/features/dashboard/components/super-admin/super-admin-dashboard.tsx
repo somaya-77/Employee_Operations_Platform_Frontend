@@ -15,7 +15,6 @@ import { getActivities } from "../../services/get-activities.service"
 import { getAlerts } from "../../services/get-alerts.service"
 
 
-
 export default async function SuperAdminDashboard() {
 
     const session = await getServerSession(authOptions)
@@ -68,7 +67,7 @@ export default async function SuperAdminDashboard() {
                             </span>
                         )}
                     </div>
-                    <SystemAlerts alerts={alertsData} />
+                    <SystemAlerts alerts={alertsData.alerts} />
                 </div>
             </div>
 

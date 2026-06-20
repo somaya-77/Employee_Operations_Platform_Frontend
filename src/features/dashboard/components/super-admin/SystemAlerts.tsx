@@ -39,8 +39,7 @@ const CONFIG = {
 }
 
 export default function SystemAlerts({ alerts }: Props) {
-
-  console.log("alerts3333333333333333333333",alerts)
+console.log("alerts",)
   if (!alerts.length) {
     return (
       <div className="flex flex-col items-center justify-center h-32 gap-2 text-muted-foreground">
