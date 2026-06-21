@@ -28,3 +28,8 @@ export interface Company {
     user_count: number
     created_at: string
 }
+
+export interface Stats {
+  companies: { total: number; active: number; suspended: number; new_this_month: number }
+  users: { total: number; active: number; new_this_month: number }
+}

@@ -1,10 +1,13 @@
-import axiosServer from "@/lib/axiosServer";
+import {axiosServer} from "@/lib/axiosServer";
 
 export async function getStats(query?: string) {
     try {
+                const api = await axiosServer();
+
+
         const url = query ? `/companies/stats?search=${query}` : `/companies/stats`;
 
-        const response = await axiosServer.get(url);
+        const response = await api.get(url);
         return response.data.data;
     } catch (error: any) {
         console.error("JWT ERROR:", error);

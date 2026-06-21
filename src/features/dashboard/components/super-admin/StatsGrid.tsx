@@ -1,10 +1,9 @@
-"use client"
+"use client";
+
+import { Stats } from "@/types/dashboard.types";
 import { Building2, Users, ShieldAlert, TrendingUp } from "lucide-react"
 
-interface Stats {
-  companies: { total: number; active: number; suspended: number; new_this_month: number }
-  users: { total: number; active: number; new_this_month: number }
-}
+
 
 interface Props { stats: Stats }
 

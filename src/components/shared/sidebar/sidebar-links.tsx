@@ -6,12 +6,10 @@ import { usePathname } from "next/navigation";
 import { SIDEBAR } from "@/lib/constance/sidebar";
 import { useSidebar } from "@/app/(dashboard)/providers/sidebar-provider";
 import { Role } from "@/types";
-import { getSession } from "next-auth/react";
-import { authOptions } from "@/auth";
+
 
 export default function SidebarLinks({role}:{ role: string | undefined }) {
-        const session =  getSession();
-
+        
     const { isCollapsed } = useSidebar();
     // Pathname
     const pathname = usePathname();
