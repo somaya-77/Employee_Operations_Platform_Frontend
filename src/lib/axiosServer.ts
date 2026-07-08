@@ -17,26 +17,20 @@
 
 // export default axiosServer;
 
-
 import axios from "axios";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
 
-export async function axiosServer() {
+export const axiosServer = async () => {
     const session = await getServerSession(authOptions);
 
-   console.log("SESSION:", session);
-console.log("ACCESS TOKEN:", session?.accessToken);
-
-    return axios.create({
+    const instance = axios.create({
         baseURL: process.env.NEXT_PUBLIC_API_URL,
-
         headers: {
-            Authorization: session?.accessToken
-                ? `Bearer ${session.accessToken}`
-                : "",
+            "Content-Type": "application/json",
+            Authorization: session?.accessToken ? `Bearer ${session.accessToken}` : "",
         },
-
     });
 
-}
+    return instance;
+};

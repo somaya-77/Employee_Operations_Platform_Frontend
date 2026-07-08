@@ -15,7 +15,7 @@ export const authOptions: NextAuthOptions = {
                 httpOnly: true,
                 sameSite: 'lax',
                 path: '/',
-                secure: true, 
+                secure: process.env.NODE_ENV === "production", 
             },
         },
     },
@@ -60,15 +60,12 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                        console.log("LOGIN USER:", user);
-
                 const u = user as any;
                 token.accessToken = u.token;
                 token.user = u.user;
                 token.role = u.user.role;
+                token.exp = Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60);
             }
-                console.log("JWT CALLBACK TOKEN:", token);
-
             return token;
         },
         async session({ session, token }) {
