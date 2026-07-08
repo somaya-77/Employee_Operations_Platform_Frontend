@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import FieldError from "./field-error";
 
 
-
 export default function TextTypeInput<T extends FieldValues>({ label, form, name, placeholder }: TypeInputProps<T>) {
 
     return (

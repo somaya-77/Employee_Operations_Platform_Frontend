@@ -1,17 +1,15 @@
 "use client";
 
 // Imports
-import { companyInputs } from "@/lib/constance/forms";
-import TypeInputs from "@/components/shared/forms/type-inputs";
-
-import { Button } from "@/components/ui/button";
-import { createCompanyAction } from "@/features/companies/actions/post-company.action";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { CompanyDefaultValue, CompanySchema, CompanySchemaType } from "../schemas/company.schema";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { companyInputs } from "@/lib/constance/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import TypeInputs from "@/components/shared/forms/type-inputs";
+import { createCompanyAction } from "@/features/companies/actions/post-company.action";
+import { CompanyDefaultValue, CompanySchema, CompanySchemaType } from "../schemas/company.schema";
 
 export default function CompanyForm() {
     // navigate
@@ -21,8 +19,10 @@ export default function CompanyForm() {
     const form = useForm<CompanySchemaType>({
         resolver: zodResolver(CompanySchema),
         defaultValues: CompanyDefaultValue,
+        mode: "onChange",
     });
 
+    // handle submit
     const handleSubmit = async (data: CompanySchemaType) => {
         const result = await createCompanyAction(data);
 
@@ -34,8 +34,6 @@ export default function CompanyForm() {
             toast.error(result.message || "Failed to create company");
         }
     };
-
-
 
     return (
         <form onSubmit={form.handleSubmit(handleSubmit)}>

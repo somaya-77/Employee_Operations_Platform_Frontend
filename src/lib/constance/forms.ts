@@ -18,11 +18,11 @@ export const accountsBtn = [
 
 export const companyInputs: TypeForm[] = [
     { id: 1, label: "Company name", type: "text", name: "company_name", placeholder: "ex- Vive" },
-    { id: 2, label: "Company domain", type: "text", name: "company_domain", placeholder: "ex- " },
-    { id: 3, label: "Admin first name", type: "text", name: "admin_first_name", placeholder: "ex- " },
-    { id: 4, label: "Admin last name", type: "text", name: "admin_last_name", placeholder: "ex- " },
-    { id: 5, label: "Admin email", type: "text", name: "admin_email", placeholder: "ex- " },
-    { id: 6, label: "Admin password", type: "password", name:"admin_password", placeholder: "ex- " },
+    { id: 2, label: "Company domain", type: "text", name: "company_domain", placeholder: "ex- https://vive.com" },
+    { id: 3, label: "Admin first name", type: "text", name: "admin_first_name", placeholder: "ex- Somaya" },
+    { id: 4, label: "Admin last name", type: "text", name: "admin_last_name", placeholder: "ex- Elkhateeb" },
+    { id: 5, label: "Admin email", type: "text", name: "admin_email", placeholder: "ex- admin@vive.com" },
+    { id: 6, label: "Admin password", type: "password", name:"admin_password", placeholder: "ex- Admin@2026!" },
 ];
 
 

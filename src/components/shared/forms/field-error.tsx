@@ -1,4 +1,4 @@
-import { FieldValues, Path, UseFormReturn } from "react-hook-form";
+import { FieldValues, Path, UseFormReturn, useFormState } from "react-hook-form";
 
 export type FieldErrorProps<T extends FieldValues> = {
   form: UseFormReturn<T>;
@@ -6,9 +6,16 @@ export type FieldErrorProps<T extends FieldValues> = {
 };
 
 export default function FieldError<T extends FieldValues>({ form, name }: FieldErrorProps<T>) {
+  // errors
+  const { errors } = useFormState({
+    control: form.control,
+  });
+
+  const error = errors[name];
+
+  if (!error) return null;
+  
   return (
-    <p className="text-sm text-red-600">
-      {form.formState.errors[name]?.message as string}
-    </p>
+    <p className="text-sm text-red-600">{String(error.message)}</p>
   );
 }
