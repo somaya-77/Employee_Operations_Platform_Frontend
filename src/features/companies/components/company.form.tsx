@@ -26,12 +26,12 @@ export default function CompanyForm() {
     const handleSubmit = async (data: CompanySchemaType) => {
         const result = await createCompanyAction(data);
 
-        if (result.success) {
+        if (result?.success) {
             toast.success("Company created successfully!");
             router.push("/companies");
             router.refresh();
         } else {
-            toast.error(result.message || "Failed to create company");
+            toast.error(result?.message || "Failed to create company");
         }
     };
 

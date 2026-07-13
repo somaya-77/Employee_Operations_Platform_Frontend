@@ -3,14 +3,9 @@ import { Company } from "@/types/dashboard.types";
 import { STATUS } from "@/lib/constance/dashboard";
 import { ColumnDef } from "@/components/shared/table/data-table";
 import { deleteCompanyAction } from "@/features/companies/actions/delete-company.action";
+import { updateCompanyAction } from "@/features/companies/actions/update-company.action";
 
 // columns company
-
-// handle edit company
-const handleUpdateCompany = ({ id }: { id: string }) => {
-
-};
-
 export const CompanyColumns: ColumnDef<Company>[] = [
     {
         header: "Company",
@@ -50,6 +45,6 @@ export const CompanyColumns: ColumnDef<Company>[] = [
     {
         header: "Actions",
         accessorKey: "actions",
-        cell: (row) => <ActionTable handleUpdate={handleUpdateCompany} id={row.id} onDelete={deleteCompanyAction}/>
+        cell: (row) => <ActionTable onEdit="/companies/edit-company" id={row.id} onDelete={deleteCompanyAction}/>
     },
 ]
