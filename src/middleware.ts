@@ -14,8 +14,8 @@ export async function middleware(request: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
   const isExpired = token ? Date.now() / 1000 > (token.exp as number) : true;
-  console.log("TOKEN:", token);
-  console.log("IS EXPIRED:", isExpired);
+  // console.log("TOKEN:", token);
+  // console.log("IS EXPIRED:", isExpired);
 
   const { pathname } = request.nextUrl;
   const userRole = token?.role;

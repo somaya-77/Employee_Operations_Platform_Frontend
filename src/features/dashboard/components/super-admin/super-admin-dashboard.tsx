@@ -41,7 +41,7 @@ export default async function SuperAdminDashboard() {
                 {/* Recent activities — 2/3 width */}
                 <div className="lg:col-span-2 rounded-xl border border-border bg-sidebar p-6">
                     <CardHeader title="Last Activity" link="/activities" titleBtn="Show all" />
-                    <RecentActivities activities={activitiesData.activities} />
+                    <RecentActivities activities={activitiesData?.activities} />
                 </div>
 
                 {/* System alerts — 1/3 width */}
@@ -54,7 +54,7 @@ export default async function SuperAdminDashboard() {
             {/*  Top Companies table  */}
             <div className="rounded-xl border border-border bg-sidebar p-6">
                 <CardHeader title="Top Companies" icon={<Building2 className="w-4 h-4 text-muted-foreground" />} link="/companies" titleBtn="Management company" />
-                <TopCompanies companies={statsData.recent_companies} />
+                <TopCompanies companies={statsData?.recent_companies} />
             </div>
         </div>
     )

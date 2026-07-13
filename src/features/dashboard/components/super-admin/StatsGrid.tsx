@@ -21,7 +21,7 @@ export default function StatsGrid({ stats }: Props) {
     },
     {
       title: "Total Users",
-      value: stats.users.total.toLocaleString(),
+      value: stats.users.total.toLocaleString("en-US"),
       sub: `${stats.users.active} Active`,
       trend: `+${stats.users.new_this_month} This Month`,
       positive: true,

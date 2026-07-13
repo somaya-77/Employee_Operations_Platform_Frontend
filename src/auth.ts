@@ -54,7 +54,7 @@ export const authOptions: NextAuthOptions = {
 
     session: {
         strategy: "jwt",
-        maxAge:  7 * 24 * 60 * 60,
+        maxAge:  30 * 24 * 60 * 60,
     },
 
     callbacks: {
@@ -64,7 +64,7 @@ export const authOptions: NextAuthOptions = {
                 token.accessToken = u.token;
                 token.user = u.user;
                 token.role = u.user.role;
-                token.exp = Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60);
+                token.exp = Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60);
             }
             return token;
         },

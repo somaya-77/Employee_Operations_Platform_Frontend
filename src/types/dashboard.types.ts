@@ -22,7 +22,7 @@ export interface Activity {
 
 // Company
 export interface Company {
-    id: string
+    id: string;
     name: string
     status: string
     user_count: number
