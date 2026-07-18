@@ -10,16 +10,16 @@ import {
     DropdownMenuTrigger,
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Edit, MoreVertical, Trash2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Edit, MoreVertical, Trash2Icon } from "lucide-react";
 
 interface Props {
     id: string;
-    onEdit: string;
-    onDelete: (id: string) => Promise<any>
+    editPath: string;
+    onDelete: (id: string) => Promise<any>;
 }
 
-export default function ActionTable({ onEdit, id, onDelete }: Props) {
+export default function ActionTable({ editPath, id, onDelete }: Props) {
     // Router
     const router = useRouter();
     // Handle delete item
@@ -35,7 +35,7 @@ export default function ActionTable({ onEdit, id, onDelete }: Props) {
 
     // Handle update item
     const handleUpdate = async (id: string) => {
-        router.push(`${onEdit}/${id}`)
+        router.push(`${editPath}/${id}`)
     };
 
     return (

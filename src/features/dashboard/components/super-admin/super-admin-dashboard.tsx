@@ -47,7 +47,7 @@ export default async function SuperAdminDashboard() {
                 {/* System alerts — 1/3 width */}
                 <div className="rounded-xl border border-border bg-sidebar p-6">
                     <CardHeader title="Alerts" link="/alerts" titleBtn="Show all" />
-                    <SystemAlerts alerts={alertsData.alerts} />
+                    <SystemAlerts alerts={alertsData?.alerts} />
                 </div>
             </div>
 

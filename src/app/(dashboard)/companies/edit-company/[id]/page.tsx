@@ -1,12 +1,14 @@
-import CompanyForm from "../../../../../features/companies/components/company.form";
+import CompanyForm from "@/features/companies/components/company.form";
 
 
-export default function Page({
+
+export default async function Page({
     params,
 }: {
     params: Promise<{ id: string }>;
 }) {
-return <div>show </div>
+    const { id } = await params;
+    console.log("iid",id)
     return (
         <div className="bg-sidebar border border-border rounded-lg p-6">
             <h1 className="text-2xl font-bold mb-4">Edit company</h1>
@@ -14,7 +16,7 @@ return <div>show </div>
                 Fill in the details below to update a company.
             </p>
 
-            <CompanyForm />
+            <CompanyForm id={id}/>
         </div>
     )
 }
