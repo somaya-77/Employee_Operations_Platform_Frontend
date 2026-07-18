@@ -14,7 +14,7 @@ import { showCompanyAction } from "../actions/show-company.action";
 import { useEffect } from "react";
 import { updateCompanyAction } from "../actions/update-company.action";
 
-export default function CompanyForm({ id }: { id: string }) {
+export default function CompanyForm({ id }: { id?: string }) {
     // navigate
     const router = useRouter();
 
