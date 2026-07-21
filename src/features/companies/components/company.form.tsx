@@ -2,17 +2,17 @@
 
 // Imports
 import { toast } from "sonner";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { companyInputs } from "@/lib/constance/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TypeInputs from "@/components/shared/forms/type-inputs";
+import { showCompanyAction } from "../actions/show-company.action";
+import { updateCompanyAction } from "../actions/update-company.action";
 import { createCompanyAction } from "@/features/companies/actions/post-company.action";
 import { CompanyDefaultValue, CompanySchema, CompanySchemaType } from "../schemas/company.schema";
-import { showCompanyAction } from "../actions/show-company.action";
-import { useEffect } from "react";
-import { updateCompanyAction } from "../actions/update-company.action";
 
 export default function CompanyForm({ id }: { id?: string }) {
     // navigate
@@ -24,8 +24,6 @@ export default function CompanyForm({ id }: { id?: string }) {
         defaultValues: CompanyDefaultValue,
         mode: "onChange",
     });
-
-
 
     // edit data
     useEffect(() => {
@@ -45,6 +43,8 @@ export default function CompanyForm({ id }: { id?: string }) {
             })
         }
     }, [id, form])
+
+    
 
 
     // handle submit

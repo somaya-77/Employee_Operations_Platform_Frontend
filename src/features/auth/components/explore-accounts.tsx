@@ -1,12 +1,12 @@
 "use client";
 
 // Imports
-import { useState, useTransition } from "react";
-import { signIn } from "next-auth/react";
-import { Button } from "@/components/ui/button";
-import { accountsBtn } from "@/lib/constance/forms";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { useState, useTransition } from "react";
+import { accountsBtn } from "@/lib/constance/forms";
 
 export default function ExploreAccounts() {
     // Router
@@ -16,6 +16,7 @@ export default function ExploreAccounts() {
 
     // State 
     const [loadingIndex, setLoadingIndex] = useState<number | null>(null);
+    
     // Handle login for the selected account
     const handleLogin = (email: string, password: string, index: number) => {
         setLoadingIndex(index);
