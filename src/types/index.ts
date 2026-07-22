@@ -1,4 +1,4 @@
-import { Label } from '@/components/ui/label';
+import { FieldValues, UseFormReturn } from 'react-hook-form';
 
 // Roles type
 export const ROLES = {
@@ -40,4 +40,27 @@ export interface User {
     name: string;
     email: string;
     role: Role;
+}
+
+
+export interface Data {
+    id: number;
+    label: string;
+    placeholder?: string | undefined;
+    type: string;
+    name: string;
+}
+
+export interface AuthFormProps<T extends FieldValues> {
+    title: "Login";
+    data: Data[];
+    titleBtn: string;
+    handleSubmit: (e?: React.BaseSyntheticEvent) => void;
+    path: string;
+    form: UseFormReturn<T>;
+    titleLinkPage?: string;
+    description?: string;
+    icon?: boolean;
+    email?: string | null | undefined;
+    generalErrorMessage?: string;
 }

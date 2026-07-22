@@ -12,6 +12,7 @@ import { getAlerts } from "../../services/get-alerts.service";
 import CardHeader from "@/components/shared/header/card-header";
 import { getActivities } from "../../services/get-activities.service";
 import { getStats } from "@/features/dashboard/services/get-stats.service";
+import { getSuperAdminStatsConfig } from "@/lib/constance/dashboard";
 
 
 export default async function SuperAdminDashboard() {
@@ -28,13 +29,14 @@ export default async function SuperAdminDashboard() {
         getAlerts(),
     ])
 
+    const cards = getSuperAdminStatsConfig(statsData);
     return (
         <div className="space-y-8">
             {/*  Header  */}
-            <HeaderDashboard session={session} />
+            <HeaderDashboard  />
 
             {/*  Stats  */}
-            <StatsGrid stats={statsData} />
+            <StatsGrid cards={cards} />
 
             {/*  Main grid  */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

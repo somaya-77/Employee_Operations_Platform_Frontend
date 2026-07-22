@@ -1,34 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { FieldValues, Path, UseFormReturn } from "react-hook-form";
+import { FieldValues, Path } from "react-hook-form";
 import TypeInputs from "./type-inputs";
 import { Button } from "@/components/ui/button";
-// import { useForgotPasswordMutation } from "@/lib/query/Auth-query/auth-query";
-// import { ForgotPasswordFormValues } from "@/lib/schemas/forgot-password.schema";
+import { AuthFormProps } from "@/types";
 
-export interface Data {
-    id: number;
-    label: string;
-    placeholder?: string | undefined;
-    type: string;
-    name: string;
-}
 
-export interface AuthFormProps<T extends FieldValues> {
-    title: "Login";
-    // title: "Login" | "Create a New Password" | "Forgot Password" | "Verify OTP";
-    data: Data[];
-    titleBtn: string;
-    handleSubmit: (e?: React.BaseSyntheticEvent) => void;
-    path: string;
-    form: UseFormReturn<T>;
-    titleLinkPage?: string;
-    description?: string;
-    icon?: boolean;
-    email?: string | null | undefined;
-    generalErrorMessage?: string;
-}
+
 
 export default function Form<T extends FieldValues>({ title, data, titleBtn, handleSubmit, path, form, titleLinkPage, icon, email }: AuthFormProps<T>) {
     // const forgotPasswordMutation = useForgotPasswordMutation();

@@ -8,7 +8,7 @@ export const loginInputs = [
 
 export const accountsBtn = [
     { label: "Login as Super Admin", email: "super@empops.io", password: "SuperAdmin@2026!" },
-    { label: "Login as Company Admin", email: "company@vive.io", password: "CompanyAdmin@2026!" },
+    { label: "Login as Company Admin", email: "admin@acme.com", password: "Admin@2026!" },
     // { label: "Login as Super Manager", email: "manager@empops.io", password: "Manager@2026!" },
     // { label: "Login as Super Employee", email: "employee@empops.io", password: "Employee@2026!" },
 ];

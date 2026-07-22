@@ -2,6 +2,7 @@ import { ROLES } from "@/types";
 import { authOptions } from "@/auth";
 import { getServerSession } from "next-auth";
 import SuperAdminDashboard from "@/features/dashboard/components/super-admin/super-admin-dashboard";
+import CompanyAdminDashboard from "@/features/dashboard/components/company-admin/company-admin-dashboard";
 
 export default async function DashboardPage() {
     // Get the session on the server side
@@ -14,6 +15,9 @@ export default async function DashboardPage() {
         <div className="">
             {role === ROLES.SUPER_ADMIN && (
                 <SuperAdminDashboard />
+            )}
+            {role === ROLES.COMPANY_ADMIN && (
+                <CompanyAdminDashboard />
             )}
         </div>
     );
